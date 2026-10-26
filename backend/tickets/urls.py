@@ -1,0 +1,3 @@
+from django.urls import path
+from .views import *
+urlpatterns=[path('tickets/',TicketsView.as_view()),path('tickets/<int:pk>/',TicketDetailView.as_view()),path('tickets/<int:pk>/messages/',MessagesView.as_view()),path('tickets/<int:pk>/ai/classify/',AIAction.as_view(),{'action':'classify'}),path('admin/dashboard/',AdminDashboard.as_view()),path('admin/tickets/',AdminTickets.as_view()),path('admin/tickets/<int:pk>/',AdminTicket.as_view()),path('admin/tickets/<int:pk>/assign/',AssignView.as_view()),path('admin/tickets/<int:pk>/notes/',NotesView.as_view()),path('admin/tickets/<int:pk>/reply/',AdminReplyView.as_view()),path('admin/tickets/<int:pk>/ai/<str:action>/',AIAction.as_view())]

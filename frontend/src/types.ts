@@ -1,0 +1,11 @@
+export type User = {id:number; email:string; full_name:string; role:'AUTHOR'|'ADMIN'};
+export type Book = {id:number;book_id:string;title:string;isbn:string|null;genre:string;publication_date:string|null;status:string;mrp:string|null;author_royalty_per_copy:string|null;total_copies_sold:number;total_royalty_earned:string;royalty_paid:string;royalty_pending:string;last_royalty_payout_date:string|null;print_partner:string|null;available_on:string[]};
+export type Message = {id:number;sender_name:string;sender_role:'AUTHOR'|'ADMIN';message:string;created_at:string};
+export type Note = {id:number;admin_name:string;note:string;created_at:string};
+export type Ticket = {id:number;ticket_number:string;book:number|null;book_data:Book|null;subject:string;description:string;category:string;priority:string;status:string;ai_status:string;created_at:string;updated_at:string;author_name?:string;author_email?:string;assigned_admin?:number|null;assigned_admin_name?:string|null;category_source?:string;priority_source?:string;ai_confidence?:number|null;ai_reason?:string;ai_draft?:string;ai_error?:string;ai_model?:string;messages?:Message[];notes?:Note[]};
+export type Page<T> = {count:number;next:string|null;previous:string|null;results:T[]};
+export const categories:Record<string,string>={ROYALTY:'Royalty & Payments',ISBN:'ISBN & Metadata Issues',PRINTING:'Printing & Quality',DISTRIBUTION:'Distribution & Availability',PRODUCTION:'Book Status & Production Updates',GENERAL:'General Inquiry'};
+export const statuses:Record<string,string>={OPEN:'Open',IN_PROGRESS:'In Progress',RESOLVED:'Resolved',CLOSED:'Closed'};
+export const priorities:Record<string,string>={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};
+export const money=(value:string|number|null|undefined)=>value==null?'—':new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'}).format(Number(value));
+export const date=(value:string|null|undefined)=>value?new Date(value).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'—';

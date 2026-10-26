@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: bookleaf-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt && python backend/manage.py collectstatic --noinput
+    startCommand: sh backend/start.sh
+    healthCheckPath: /api/v1/health/
+    envVars:
+      - key: BOOKLEAF_DEBUG
+        value: 'False'
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
